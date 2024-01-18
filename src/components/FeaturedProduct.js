@@ -84,26 +84,26 @@ export default function FeaturedProduct() {
         const featured = [];
 
         const generateRandomNums = () => {
-          let randomNum = Math.floor(Math.random() * data.length);
-
-          if (numbers.indexOf(randomNum) === -1) {
-            numbers.push(randomNum);
-          } else {
-            generateRandomNums();
+          const numbers = [];
+          while (numbers.length < 5) {
+            let randomNum = Math.floor(Math.random() * data.length);
+            if (numbers.indexOf(randomNum) === -1) {
+              numbers.push(randomNum);
+            }
           }
+          return numbers;
         };
-
+        
+        const randomNumbers = generateRandomNums();
+        
         for (let i = 0; i < 5; i++) {
-          generateRandomNums();
-
           featured.push(
             <PreviewProduct
-              key={data[numbers[i]]._id}
-              data={data[numbers[i]]}
+              key={data[randomNumbers[i]]._id}
+              data={data[randomNumbers[i]]}
               breakPoint={2}
               onBuy={() => {
-                // Use the navigate function to redirect to ProductView
-                navigate(`/product/${data[numbers[i]]._id}`);
+                navigate(`/product/${data[randomNumbers[i]]._id}`);
               }}
             />
           );
