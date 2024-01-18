@@ -33,7 +33,7 @@ export default function ArchiveProducts({ productId, fetchData, isActive }) {
   }
 
   function activateToggle() {
-    fetch(`http://localhost:4000/products/${productId}/activate`, {
+    fetch(`${process.env.REACT_APP_API_URL}/products/${productId}/activate`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access")}`,
